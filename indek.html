@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>TOKO ONLINE MAJI | Belanja Elegan & Amanah</title>
+  <!-- Google Fonts + Tailwind + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: #faf9fe;
+    }
+    /* custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c084fc;
+      border-radius: 10px;
+    }
+    /* smooth transition untuk sections */
+    .section-transition {
+      transition: all 0.3s ease;
+    }
+    /* modal backdrop blur */
+    .modal-backdrop {
+      backdrop-filter: blur(8px);
+      background-color: rgba(0, 0, 0, 0.6);
+      transition: opacity 0.25s ease;
+    }
+    /* card hover effect */
+    .product-card {
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.15);
+    }
+    /* tombol animasi */
+    .btn-wa {
+      transition: all 0.2s;
+    }
+    .btn-wa:hover {
+      background-color: #075e54;
+      transform: scale(1.02);
+    }
+    /* video styling agar rapi */
+    .card-video {
+      border-radius: 12px;
+      background: #00000010;
+    }
+    /* active menu */
+    .nav-active {
+      background: rgba(139, 92, 246, 0.15);
+      color: #6d28d9;
+      font-weight: 600;
+      border-bottom: 2px solid #8b5cf6;
+    }
+    @media (max-width: 640px) {
+      .nav-active {
+        border-bottom: 2px solid #8b5cf6;
+        background: transparent;
+      }
+    }
+    /* custom container */
+    .container-custom {
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- HEADER & NAVIGASI -->
+  <header class="sticky top-0 z-30 bg-white/80 backdrop-blur-md shadow-sm border-b border-purple-100">
+    <div class="container-custom py-4 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <i class="fas fa-magic text-3xl text-purple-600"></i>
+        <span class="text-2xl font-bold bg-gradient-to-r from-purple-700 to-fuchsia-600 bg-clip-text text-transparent">TOKO ONLINE MAJI</span>
+      </div>
+      
+      <!-- mobile menu button -->
+      <button id="mobileMenuBtn" class="block md:hidden text-purple-700 text-2xl focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <!-- nav links desktop & mobile -->
+      <nav id="navbarNav" class="hidden md:flex w-full md:w-auto flex-col md:flex-row gap-2 md:gap-1 mt-4 md:mt-0 transition-all">
+        <button data-nav="beranda" class="nav-btn px-5 py-2 rounded-full font-medium text-gray-700 hover:text-purple-700 hover:bg-purple-50 transition">Beranda</button>
+        <button data-nav="produk" class="nav-btn px-5 py-2 rounded-full font-medium text-gray-700 hover:text-purple-700 hover:bg-purple-50 transition">Produk</button>
+        <button data-nav="kontak" class="nav-btn px-5 py-2 rounded-full font-medium text-gray-700 hover:text-purple-700 hover:bg-purple-50 transition">Kontak</button>
+      </nav>
+    </div>
+    <!-- mobile menu expanded -->
+    <div id="mobileNav" class="hidden md:hidden bg-white/95 backdrop-blur-md border-t border-purple-100 px-4 py-3 flex flex-col gap-2">
+      <button data-nav="beranda" class="nav-btn-mobile text-left px-4 py-2 rounded-xl font-medium text-gray-700 hover:bg-purple-50">🏠 Beranda</button>
+      <button data-nav="produk" class="nav-btn-mobile text-left px-4 py-2 rounded-xl font-medium text-gray-700 hover:bg-purple-50">📦 Produk</button>
+      <button data-nav="kontak" class="nav-btn-mobile text-left px-4 py-2 rounded-xl font-medium text-gray-700 hover:bg-purple-50">📞 Kontak</button>
+    </div>
+  </header>
+
+  <main class="container-custom py-8 md:py-12">
+    <!-- BERANDA SECTION -->
+    <section id="berandaSection" class="section-page">
+      <!-- Hero elegan -->
+      <div class="bg-gradient-to-br from-purple-50 via-white to-indigo-50 rounded-3xl p-6 md:p-12 mb-12 shadow-md border border-purple-100">
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="flex-1 text-center md:text-left">
+            <h1 class="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-purple-800 to-fuchsia-700 bg-clip-text text-transparent leading-tight">Temukan Produk <br> Dengan Kualitas Terbaik</h1>
+            <p class="text-gray-600 mt-4 text-lg">Produk premium dengan sentuhan modern, Amanah hanya di TOKO ONLINE MAJI.</p>
+            <div class="mt-6 flex flex-wrap gap-4 justify-center md:justify-start">
+              <button data-nav="produk" class="bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-full font-semibold shadow-lg transition flex items-center gap-2"><i class="fas fa-store"></i> Order Sekarang</button>
+              <a href="https://wa.me/6281344900346?text=Halo%20Toko%20Online%20Maji%2C%20saya%20butuh%20bantuan%20produk" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-semibold shadow transition flex items-center gap-2"><i class="fab fa-whatsapp"></i> Hub via WA</a>
+            </div>
+          </div>
+          <div class="flex-1 flex justify-center">
+            <div class="relative w-64 h-64 md:w-80 md:h-80 bg-gradient-to-tr from-purple-200 to-fuchsia-200 rounded-full flex items-center justify-center shadow-2xl">
+              <i class="fas fa-gem text-7xl text-purple-700 opacity-80"></i>
+              <div class="absolute inset-0 rounded-full border-4 border-purple-300 animate-pulse opacity-50"></div>
+            </div>
+          </div>
+        </div>
+      </div>      
+      <!-- featured grid ringan -->
+      <div class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 relative inline-block after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-1/2 after:h-1 after:bg-purple-500 after:rounded-full">✨ Produk Terlaris</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 mt-8" id="featuredPreview"></div>
+      </div>
+      
+      </div>
+    </section>
+
+    <!-- PRODUK SECTION (dynamic product grid) -->
+    <section id="produkSection" class="section-page hidden">
+      <div class="flex justify-between items-center flex-wrap gap-3 mb-8">
+        <h2 class="text-3xl font-bold text-gray-800"><i class="fas fa-box-open text-purple-600 mr-2"></i>Semua Produk</h2>
+        <p class="text-gray-500">Tampilkan foto & video produk terbaik</p>
+      </div>
+      <div id="productGridContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-7">
+        <!-- product cards akan di render oleh JS -->
+      </div>
+    </section>
+
+    <!-- KONTAK SECTION -->
+    <section id="kontakSection" class="section-page hidden">
+      <div class="grid md:grid-cols-2 gap-8 items-start">
+        <div class="bg-white rounded-2xl shadow-md p-6 border border-purple-100">
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fas fa-address-card text-purple-600"></i> Hubungi Kami</h3>
+          <div class="space-y-4">
+            <div class="flex items-center gap-3"><i class="fas fa-map-marker-alt w-6 text-purple-500"></i><span>Mahir Digital Empower You Depok Jawa Barat</span></div>
+            <div class="flex items-center gap-3"><i class="fas fa-phone-alt w-6 text-purple-500"></i><span>+62 813-4490-0346</span></div>
+            <div class="flex items-center gap-3"><i class="fas fa-envelope w-6 text-purple-500"></i><span>d22614842@gmail.com</span></div>
+            <div class="flex items-center gap-3"><i class="fab fa-whatsapp w-6 text-green-500"></i><span><a href="https://wa.me/6281344900346" target="_blank" class="text-green-700 font-medium hover:underline">+62 813-4490-0346 (Admin Maji)</a></span></div>
+          </div>
+          <hr class="my-6">
+          <div>
+            <h4 class="font-semibold text-gray-700 mb-2">Jam Operasional</h4>
+            <p>Senin - Jumat : 09.00 - 20.00 <br> Sabtu & Minggu : 10.00 - 17.00</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-6 border border-purple-100">
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fas fa-comment-dots text-purple-600"></i> Kirim Pesan Langsung</h3>
+          <p class="text-gray-600 mb-4">Butuh bantuan atau info produk? Klik tombol di bawah untuk chat via WhatsApp.</p>
+          <a href="https://wa.me/6281344900346?text=Halo%20Admin%20TOKO%20ONLINE%20MAJI%2C%20saya%20ingin%20bertanya%20mengenai%20produk" target="_blank" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition shadow"><i class="fab fa-whatsapp text-xl"></i> Chat Admin Sekarang</a>
+          <div class="mt-6 p-4 bg-purple-50 rounded-xl">
+            <p class="text-sm text-purple-800"><i class="fas fa-shield-alt mr-1"></i> 100% Respon cepat, pelayanan ramah.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-10 text-center text-gray-400 text-sm">TOKO ONLINE MAJI - Jujur dan Amanah</div>
+    </section>
+  </main>
+
+  <!-- MODAL DETAIL PRODUK -->
+  <div id="productModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 transition-all">
+    <div class="modal-backdrop absolute inset-0 bg-black/60 backdrop-blur-sm" id="modalOverlay"></div>
+    <div class="relative bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all duration-300 scale-95 animate-modal">
+      <div class="sticky top-0 bg-white/90 backdrop-blur-sm p-4 border-b flex justify-between items-center">
+        <h3 class="text-xl font-bold text-gray-800" id="modalProductName">Detail Produk</h3>
+        <button id="closeModalBtn" class="text-gray-500 hover:text-red-500 text-2xl">&times;</button>
+      </div>
+      <div class="p-5">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <img id="modalImage" src="" alt="product" class="w-full rounded-xl object-cover max-h-64 shadow-md">
+            <div class="mt-4">
+              <video id="modalVideo" controls class="w-full rounded-xl max-h-52 bg-black/5" poster="">
+                <source id="modalVideoSource" src="" type="video/mp4">
+                Your browser tidak support video.
+              </video>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <h4 class="text-2xl font-bold text-gray-800" id="modalName"></h4>
+              <p class="text-purple-700 text-2xl font-semibold mt-1" id="modalPrice"></p>
+            </div>
+            <div>
+              <p class="text-gray-600 text-sm font-medium">Deskripsi Lengkap</p>
+              <p id="modalFullDesc" class="text-gray-700 mt-1 leading-relaxed"></p>
+            </div>
+            <div class="pt-3 flex flex-wrap gap-3">
+              <button id="modalWhatsappBtn" class="btn-wa bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-xl flex items-center gap-2 font-semibold shadow"><i class="fab fa-whatsapp"></i> Beli via WhatsApp</button>
+              <button id="closeModalBtn2" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-5 py-2.5 rounded-xl font-medium">Tutup</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---------- PRODUCT DATA (foto + video, deskripsi singkat <= 60 karakter) ----------
+    const products = [
+      {
+        id: 1,
+        name: "Eros Serum Perkasa",
+        price: "Rp 210.000",
+        shortDesc: "EROS SERUM PRIA OBAT KUAT PRIA TAHAN LAMA AMPUH EROS DEWA CINTAMU PEMBESAR MISTER P PERBESAR KELAMINPRIA PEMBESAR PENIS PERMANEN",
+        fullDesc: "Eros adalah produk yang dibuat dengan Teknologi modern yang penelitiannya yang pastinya aman. bermanfaat untuk Menunda Ejakulasi ,Menambah Durasi, Mengatasi si Edi, Memuaskan Pasangan dan merangsang Gairah", 
+        image:"foto/Eros 1.jpg",
+        video: "Video/Video Eros 1.mp4"
+      },
+      {
+        id: 2,
+        name: "Majakanza 30 Pill",
+        price: "Rp 230.000",
+        shortDesc: "RAWAT KEWANITAANMU, PANCARKAN PESONA ALAMI",
+        fullDesc: "Majakanza 30 Pill adalah produk yang dibuat dengan Teknologi modern yang penelitiannya yang pastinya aman. bermanfaat untuk Menunda Ejakulasi ,Menambah Durasi, Mengatasi si Edi, Memuaskan Pasangan dan merangsang Gairah",
+        image: "foto/Majakanza 1.jpg",
+        video: "Video/Video Majakanza 1.mp4"
+      },
+      {
+        id: 3,
+        name: "Tas Kulit Wanita",
+        price: "Rp 520.000",
+        shortDesc: "Tas kulit asli multifungsi, stylish untuk daily.",
+        fullDesc: "Tas selempang kulit asli sapi, warna caramel & hitam, banyak kompartemen, anti air, cocok untuk kerja maupun jalan santai.",
+        image: "https://picsum.photos/id/68/400/300",
+        video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4"
+      },
+      {
+        id: 4,
+        name: "Sepeda Lipat City",
+        price: "Rp 2.150.000",
+        shortDesc: "Ringan 12kg, mudah dilipat, praktis komuter.",
+        fullDesc: "Sepeda lipat velg 20 inch, frame alumunium, 6 speed, rem cakram, garansi 1 tahun, cocok untuk perjalanan perkotaan.",
+        image: "https://picsum.photos/id/57/400/300",
+        video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4"
+      },
+      {
+        id: 5,
+        name: "Smart Watch Pro Max",
+        price: "Rp 890.000",
+        shortDesc: "Detak jantung, notifikasi, tahan air.",
+        fullDesc: "Smartwatch dengan layar AMOLED 1.78\", monitoring olahraga, tahan air IP68, baterai tahan 7 hari. Support iOS & Android.",
+        image: "https://picsum.photos/id/0/400/300",
+        video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCar.mp4"
+      },
+      {
+        id: 6,
+        name: "Jaket Hoodie Exclusive",
+        price: "Rp 425.000",
+        shortDesc: "Bahan fleece tebal, hoodie casual kekinian.",
+        fullDesc: "Jaket hoodie unisex, warna sage green & charcoal, kantong depan, bahan premium anti kusut, nyaman dipakai santai maupun hangout.",
+        image: "https://picsum.photos/id/26/400/300",
+        video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+      }
+    ];
+
+    // fungsi untuk memastikan deskripsi singkat max 60 karakter atau 20 kata
+    function enforceShortDesc(desc) {
+      if (desc.length > 60) {
+        return desc.substring(0, 57) + "...";
+      }
+      return desc;
+    }
+
+    // render produk grid (digunakan di halaman produk dan featured preview)
+    function renderProductGrid(containerId, isFeature = false, limit = 3) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      let productsToRender = isFeature ? products.slice(0, limit) : products;
+      container.innerHTML = "";
+      productsToRender.forEach(prod => {
+        const shortText = enforceShortDesc(prod.shortDesc);
+        // card dengan foto + video (keduanya ditampilkan jelas)
+        const card = document.createElement('div');
+        card.className = "product-card bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 transition-all hover:shadow-xl";
+        card.innerHTML = `
+          <div class="p-3 pb-1">
+            <img src="${prod.image}" alt="${prod.name}" class="w-full h-44 object-cover rounded-xl shadow-sm">
+            <div class="mt-3">
+              <video class="w-full rounded-lg card-video max-h-32 object-cover" controls preload="none">
+                <source src="${prod.video}" type="video/mp4">
+                Browser tidak support video.
+              </video>
+            </div>
+          </div>
+          <div class="p-4 pt-2">
+            <h3 class="font-bold text-gray-800 text-lg truncate">${prod.name}</h3>
+            <div class="flex items-center justify-between mt-1">
+              <span class="text-purple-700 font-bold text-xl">${prod.price}</span>
+            </div>
+            <p class="text-gray-500 text-sm mt-2 line-clamp-2">${shortText}</p>
+            <div class="flex gap-2 mt-4">
+              <button class="detail-btn bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-xl text-sm font-medium flex-1 transition flex items-center justify-center gap-1" data-id="${prod.id}"><i class="fas fa-eye"></i> Lihat Detail</button>
+              <button class="wa-btn bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-xl text-sm font-medium flex items-center justify-center gap-1 transition" data-name="${prod.name}" data-price="${prod.price}"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+      attachProductCardEvents();
+    }
+
+    // event listener untuk tombol detail & WA setelah render
+    function attachProductCardEvents() {
+      document.querySelectorAll('.detail-btn').forEach(btn => {
+        btn.removeEventListener('click', handleDetailClick);
+        btn.addEventListener('click', handleDetailClick);
+      });
+      document.querySelectorAll('.wa-btn').forEach(btn => {
+        btn.removeEventListener('click', handleWAClick);
+        btn.addEventListener('click', handleWAClick);
+      });
+    }
+
+    function handleDetailClick(e) {
+      const productId = parseInt(e.currentTarget.getAttribute('data-id'));
+      const product = products.find(p => p.id === productId);
+      if (product) openModal(product);
+    }
+
+    function handleWAClick(e) {
+      const productName = e.currentTarget.getAttribute('data-name');
+      const message = `Halo, saya tertarik dengan produk *${productName}* dari TOKO ONLINE MAJI. Bisa info lebih lanjut?`;
+      const waNumber = "6281344900346"; // ganti dengan nomor toko
+      const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+
+    // MODAL LOGIC
+    const modal = document.getElementById('productModal');
+    let currentProduct = null;
+    function openModal(product) {
+      currentProduct = product;
+      document.getElementById('modalProductName').innerText = product.name;
+      document.getElementById('modalName').innerText = product.name;
+      document.getElementById('modalPrice').innerHTML = product.price;
+      document.getElementById('modalFullDesc').innerText = product.fullDesc;
+      const modalImg = document.getElementById('modalImage');
+      modalImg.src = product.image;
+      modalImg.alt = product.name;
+      const modalVideoSource = document.getElementById('modalVideoSource');
+      const modalVideo = document.getElementById('modalVideo');
+      modalVideoSource.src = product.video;
+      modalVideo.load();
+      // WA di modal
+      const modalWaBtn = document.getElementById('modalWhatsappBtn');
+      const newWaBtn = modalWaBtn.cloneNode(true);
+      modalWaBtn.parentNode.replaceChild(newWaBtn, modalWaBtn);
+      newWaBtn.addEventListener('click', () => {
+        const msg = `Halo, saya tertarik dengan produk *${product.name}* (${product.price}). Apakah tersedia?`;
+        window.open(`https://wa.me/6281344900346?text=${encodeURIComponent(msg)}`, '_blank');
+      });
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = 'auto';
+      const video = document.getElementById('modalVideo');
+      if (video) video.pause();
+    }
+    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+    document.getElementById('closeModalBtn2').addEventListener('click', closeModal);
+    document.getElementById('modalOverlay').addEventListener('click', closeModal);
+
+    // RENDER full produk di halaman produk
+    function renderFullProductPage() {
+      const container = document.getElementById('productGridContainer');
+      if (!container) return;
+      container.innerHTML = "";
+      products.forEach(prod => {
+        const shortText = enforceShortDesc(prod.shortDesc);
+        const cardDiv = document.createElement('div');
+        cardDiv.className = "product-card bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 transition-all hover:shadow-xl";
+        cardDiv.innerHTML = `
+          <div class="p-3 pb-1">
+            <img src="${prod.image}" alt="${prod.name}" class="w-full h-44 object-cover rounded-xl shadow-sm">
+            <div class="mt-3">
+              <video class="w-full rounded-lg card-video max-h-32 object-cover" controls preload="metadata">
+                <source src="${prod.video}" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="p-4 pt-2">
+            <h3 class="font-bold text-gray-800 text-lg truncate">${prod.name}</h3>
+            <div class="flex items-center justify-between mt-1">
+              <span class="text-purple-700 font-bold text-xl">${prod.price}</span>
+            </div>
+            <p class="text-gray-500 text-sm mt-2">${shortText}</p>
+            <div class="flex gap-2 mt-4">
+              <button class="detail-btn bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-xl text-sm font-medium flex-1 transition flex items-center justify-center gap-1" data-id="${prod.id}"><i class="fas fa-eye"></i> Lihat Detail</button>
+              <button class="wa-btn bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-xl text-sm font-medium flex items-center justify-center gap-1 transition" data-name="${prod.name}" data-price="${prod.price}"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(cardDiv);
+      });
+      attachProductCardEvents();
+    }
+
+    // featured preview hanya 3 produk
+    function renderFeaturedPreview() {
+      const featContainer = document.getElementById('featuredPreview');
+      if (!featContainer) return;
+      featContainer.innerHTML = "";
+      products.slice(0,3).forEach(prod => {
+        const shortFeat = enforceShortDesc(prod.shortDesc);
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-xl p-3 shadow hover:shadow-md transition border border-gray-100";
+        card.innerHTML = `
+          <img src="${prod.image}" class="w-full h-32 object-cover rounded-lg mb-2">
+          <h4 class="font-semibold">${prod.name}</h4>
+          <p class="text-purple-600 font-bold">${prod.price}</p>
+          <p class="text-gray-500 text-xs">${shortFeat}</p>
+          <button data-nav="produk" class="mt-2 text-purple-600 text-sm font-medium flex items-center gap-1">Lihat Selengkapnya <i class="fas fa-arrow-right"></i></button>
+        `;
+        featContainer.appendChild(card);
+      });
+      document.querySelectorAll('#featuredPreview button[data-nav="produk"]').forEach(btn => {
+        btn.addEventListener('click', () => navigateTo('produk'));
+      });
+    }
+    
+    // navigasi antar halaman
+    const berandaSec = document.getElementById('berandaSection');
+    const produkSec = document.getElementById('produkSection');
+    const kontakSec = document.getElementById('kontakSection');
+    function navigateTo(page) {
+      berandaSec.classList.add('hidden');
+      produkSec.classList.add('hidden');
+      kontakSec.classList.add('hidden');
+      if (page === 'beranda') berandaSec.classList.remove('hidden');
+      if (page === 'produk') {
+        produkSec.classList.remove('hidden');
+        // render ulang produk setiap kali dibuka untuk memastikan data mutakhir
+        renderFullProductPage();
+      }
+      if (page === 'kontak') kontakSec.classList.remove('hidden');
+      // update active class nav
+      document.querySelectorAll('.nav-btn, .nav-btn-mobile').forEach(btn => {
+        btn.classList.remove('nav-active', 'bg-purple-100');
+        if (btn.getAttribute('data-nav') === page) {
+          btn.classList.add('nav-active');
+        }
+      });
+      // scroll halus
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // event listeners navigasi
+    document.querySelectorAll('.nav-btn, .nav-btn-mobile').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const page = e.currentTarget.getAttribute('data-nav');
+        navigateTo(page);
+        // tutup mobile menu jika terbuka
+        const mobileNavDiv = document.getElementById('mobileNav');
+        if (mobileNavDiv && !mobileNavDiv.classList.contains('hidden')) {
+          mobileNavDiv.classList.add('hidden');
+        }
+      });
+    });
+    
+    // mobile menu toggle
+    const mobileToggle = document.getElementById('mobileMenuBtn');
+    const mobileNavDiv = document.getElementById('mobileNav');
+    if (mobileToggle) {
+      mobileToggle.addEventListener('click', () => {
+        mobileNavDiv.classList.toggle('hidden');
+      });
+    }
+    
+    // initial load: default beranda, render featured + product tersembunyi
+    renderFeaturedPreview();
+    renderFullProductPage(); // preload product grid but section hidden
+    navigateTo('beranda');
+    
+    // pastikan tombol WA di product card sudah terikat (karena dynamic)
+    document.addEventListener('click', (e) => {
+      // fallback untuk tombol WA yang mungkin belum terpasang dinamis
+      if (e.target.closest('.wa-btn')) {
+        const btn = e.target.closest('.wa-btn');
+        const name = btn.getAttribute('data-name');
+        if (name) {
+          e.preventDefault();
+          const msg = `Halo, saya tertarik dengan produk *${name}* dari TOKO ONLINE MAJI.`;
+          window.open(`https://wa.me/6281344900346?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
